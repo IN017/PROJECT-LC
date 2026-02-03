@@ -160,14 +160,19 @@ class="rounded shadow-lg w-full h-64 hover:scale-105 transition" data-aos="zoom-
 <p>📧 lcsolucaoenergetica@gmail.com</p>
 <p>📞 929 029 911 / 951 103 616</p>
 
-<form class="max-w-md mx-auto mt-6 space-y-4 px-4">
-<input class="w-full p-3 rounded text-black" placeholder="Nome">
-<input class="w-full p-3 rounded text-black" placeholder="Telefone">
-<textarea class="w-full p-3 rounded text-black" placeholder="Mensagem"></textarea>
-<button class="bg-yellow-400 text-black w-full py-3 rounded">Enviar</button>
-</form>
+<div class="max-w-md mx-auto mt-6 space-y-4 px-4">
 
+<input id="nome" class="w-full p-3 rounded text-black" placeholder="Nome">
+<input id="telefone" class="w-full p-3 rounded text-black" placeholder="Telefone">
+<textarea id="mensagem" class="w-full p-3 rounded text-black" placeholder="Mensagem"></textarea>
+
+<button onclick="enviarWhatsApp()" class="bg-yellow-400 text-black w-full py-3 rounded font-semibold">
+Enviar
+</button>
+
+</div>
 </section>
+
 
 <footer class="bg-slate-950 text-center py-6">
 © 2026 LC Solução Energética LDA
@@ -180,6 +185,31 @@ AOS.init();
 
 function toggleMenu(){
 document.getElementById("mobileMenu").classList.toggle("hidden");
+}
+
+function enviarWhatsApp(){
+
+let nome = document.getElementById("nome").value;
+let telefone = document.getElementById("telefone").value;
+let mensagem = document.getElementById("mensagem").value;
+
+if(nome === "" || telefone === "" || mensagem === ""){
+alert("Por favor preencha todos os campos");
+return;
+}
+
+let texto =
+`Olá, vim pelo site da LC Solução Energética.
+
+Nome: ${nome}
+Telefone: ${telefone}
+Mensagem: ${mensagem}`;
+
+let numero = "244931315554";
+
+let url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(texto);
+
+window.open(url, "_blank");
 }
 </script>
 
